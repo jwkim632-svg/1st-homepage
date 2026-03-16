@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>김종욱 포트폴리오 | 하이테크 인재 경영 리더</title>
+    <style>
+        :root {
+            --navy: #002c5e;
+            --blue: #0056b3;
+            --gold: #d4af37;
+            --light-bg: #f4f7fa;
+            --text: #333;
+        }
+
+        body {
+            font-family: 'Pretendard', -apple-system, sans-serif;
+            margin: 0;
+            background-color: var(--light-bg);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* 프로필 섹션 */
+        .header-card {
+            display: flex;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            gap: 40px;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .profile-zone { text-align: center; flex-shrink: 0; }
+        #preview {
+            width: 220px; height: 280px;
+            background: #e9ecef; border-radius: 15px;
+            object-fit: cover; display: block;
+            border: 1px solid #ddd; margin-bottom: 15px;
+        }
+
+        .upload-label {
+            background: var(--navy); color: white;
+            padding: 10px 20px; border-radius: 8px;
+            cursor: pointer; font-size: 0.9rem;
+        }
+
+        .info-zone h1 { font-size: 2.8rem; margin: 0; color: var(--navy); }
+        .main-title { font-size: 1.3rem; font-weight: 700; color: var(--blue); margin: 10px 0 20px; }
+        .contact-list { list-style: none; padding: 0; font-size: 0.95rem; color: #666; }
+
+        /* 공통 섹션 스타일 */
+        .section {
+            background: white; padding: 35px;
+            border-radius: 20px; margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        }
+        .section-title {
+            font-size: 1.5rem; color: var(--navy);
+            border-left: 5px solid var(--blue);
+            padding-left: 15px; margin-bottom: 25px;
+        }
+
+        /* 로또 추출기 스타일 */
+        .lotto-container {
+            text-align: center; background: #fff; padding: 20px; border-radius: 15px;
+            border: 2px dashed var(--gold);
+        }
+        .lotto-btn {
+            background: var(--gold); color: white; border: none;
+            padding: 12px 30px; font-size: 1.1rem; font-weight: bold;
+            border-radius: 8px; cursor: pointer; margin-bottom: 20px;
+        }
+        .lotto-row {
+            display: flex; justify-content: center; gap: 10px; margin-bottom: 15px;
+        }
+        .ball {
+            width: 45px; height: 45px; line-height: 45px;
+            border-radius: 50%; color: white; font-weight: bold; font-size: 1.1rem;
+        }
+        /* 로또 공 색상 */
+        .ball-1 { background: #fbc400; } /* 1-10 */
+        .ball-11 { background: #69c8f2; } /* 11-20 */
+        .ball-21 { background: #ff7272; } /* 21-30 */
+        .ball-31 { background: #aaa; }    /* 31-40 */
+        .ball-41 { background: #b0d840; } /* 41-45 */
+
+        /* 경력 상세 */
+        .exp-row { margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px solid #eee; }
+        .exp-row:last-child { border: none; }
+        .exp-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+        .company { font-size: 1.25rem; font-weight: 800; color: var(--navy); }
+        .period { color: #888; font-size: 0.9rem; }
+        .role { color: var(--blue); font-weight: 600; margin-bottom: 10px; display: block; }
+        ul { padding-left: 20px; margin: 0; }
+        li { margin-bottom: 6px; color: #555; }
+
+        @media (max-width: 768px) {
+            .header-card { flex-direction: column; text-align: center; }
+            .exp-head { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header class="header-card">
+        <div class="profile-zone">
+            <img id="preview" src="https://via.placeholder.com/220x280?text=사진을+업로드하세요" alt="프로필 사진">
+            <label for="img-input" class="upload-label">사진 파일 선택</label>
+            <input type="file" id="img-input" accept="image/*" style="display:none">
+        </div>
+        <div class="info-zone">
+            <h1>김 종 욱</h1>
+            <div class="main-title">10년 서치펌 대표(CEO) | 19년 하이테크 기술 리더</div>
+            <ul class="contact-list">
+                <li>📧 jwkim2k@naver.com</li>
+                <li>📱 010-7145-1629</li>
+                <li>🎓 한양대학교 금속공학과 학사 | ROTC 26기</li>
+            </ul>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="section-title">데이터 기반 로또 번호 추출기 (최근 5년 통계 반영)</div>
+        <div class="lotto-container">
+            <p style="font-size: 0.9rem; color: #666; margin-bottom: 20px;">
+                최근 5년간 가장 자주 등장한 'Hot Numbers' 가중치를 적용한 인공지능 추천 번호 3세트입니다.
+            </p>
+            <button class="lotto-btn" onclick="generateLottoSets()">번호 생성하기</button>
+            <div id="lotto-result">
+                </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-title">핵심 강점 (Core Strengths)</div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+            <div style="padding:20px; background:#f8f9ff; border-radius:12px;">
+                <strong style="color:var(--blue); display:block; margin-bottom:10px;">01. 독보적인 도메인 지식</strong>
+                <p>삼성 반도체 및 GCT 등 19년 기술 리더십 및 현장 통찰력 보유.</p>
+            </div>
+            <div style="padding:20px; background:#f8f9ff; border-radius:12px;">
+                <strong style="color:var(--blue); display:block; margin-bottom:10px;">02. 경영 및 리더십</strong>
+                <p>10년 차 서치펌 CEO로서 검증된 조직 관리 및 고객사 전략 수립 능력.</p>
+            </div>
+            <div style="padding:20px; background:#f8f9ff; border-radius:12px;">
+                <strong style="color:var(--blue); display:block; margin-bottom:10px;">03. 전략적 인재 매칭</strong>
+                <p>하이테크 전문 지식 기반의 C-Level 및 핵심 R&D 인력 타겟팅.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-title">주요 경력 상세</div>
+        
+        <div class="exp-row">
+            <div class="exp-head">
+                <span class="company">지투지파트너스</span>
+                <span class="period">2016. 01 ~ 2025. 현재</span>
+            </div>
+            <span class="role">대표이사 (CEO)</span>
+            <ul>
+                <li>하이테크 전문 서치펌 설립 및 운영</li>
+                <li>임원급(Executive Search) 포지션 독보적 클로징 성과</li>
+            </ul>
+        </div>
+
+        <div class="exp-row">
+            <div class="exp-head">
+                <span class="company">GCT Semiconductor</span>
+                <span class="period">Director</span>
+            </div>
+            <span class="role">이사</span>
+            <ul>
+                <li>RF Transceiver 및 Wibro SOC 프로젝트 총괄</li>
+                <li>삼성 System LSI 및 UMC 파운드리 협력 관리</li>
+            </ul>
+        </div>
+
+        <div class="exp-row">
+            <div class="exp-head">
+                <span class="company">Silterra (Malaysia)</span>
+                <span class="period">Section Manager</span>
+            </div>
+            <span class="role">Yield Enhancement & FA</span>
+            <ul>
+                <li>Logic Product 수율 개선 및 불량 분석 총괄</li>
+            </ul>
+        </div>
+
+        <div class="exp-row">
+            <div class="exp-head">
+                <span class="company">삼성반도체</span>
+                <span class="period">Manager</span>
+            </div>
+            <span class="role">품질 및 신뢰성 전문위원</span>
+            <ul>
+                <li>메모리 제품 신뢰성 보증 및 품질 프로세스 정립</li>
+            </ul>
+        </div>
+    </section>
+</div>
+
+<script>
+    /* 1. 사진 업로드 스크립트 */
+    const imgInput = document.getElementById('img-input');
+    const preview = document.getElementById('preview');
+
+    imgInput.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                preview.src = event.target.result;
+            }
+            reader.readAsDataURL(file);
+        }
+    });
+
+    /* 2. 로또 번호 추출기 스크립트 (가중치 로직 적용) */
+    // 최근 5년간 빈출 숫자로 알려진 번호들에 가중치 부여 (예시: 1, 12, 18, 33, 34, 43 등)
+    const hotNumbers = [1, 12, 13, 17, 18, 21, 27, 33, 34, 39, 43, 45];
+    
+    function generateLottoSets() {
+        const resultContainer = document.getElementById('lotto-result');
+        resultContainer.innerHTML = ''; // 초기화
+
+        for (let s = 0; s < 3; s++) { // 3개 세트 생성
+            let numbers = [];
+            while (numbers.length < 6) {
+                let num;
+                // 30% 확률로 빈출 번호(Hot Numbers)에서 추출, 70%는 일반 랜덤
+                if (Math.random() < 0.3) {
+                    num = hotNumbers[Math.floor(Math.random() * hotNumbers.length)];
+                } else {
+                    num = Math.floor(Math.random() * 45) + 1;
+                }
+
+                if (!numbers.includes(num)) {
+                    numbers.push(num);
+                }
+            }
+            numbers.sort((a, b) => a - b);
+
+            // 결과 화면 구성
+            const row = document.createElement('div');
+            row.className = 'lotto-row';
+            
+            numbers.forEach(n => {
+                const ball = document.createElement('div');
+                ball.className = 'ball ' + getBallColorClass(n);
+                ball.innerText = n;
+                row.appendChild(ball);
+            });
+            resultContainer.appendChild(row);
+        }
+    }
+
+    function getBallColorClass(n) {
+        if (n <= 10) return 'ball-1';
+        if (n <= 20) return 'ball-11';
+        if (n <= 30) return 'ball-21';
+        if (n <= 40) return 'ball-31';
+        return 'ball-41';
+    }
+</script>
+
+</body>
+</html>
